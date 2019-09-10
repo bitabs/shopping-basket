@@ -4,12 +4,21 @@ import { connect } from 'react-redux'
 import { ProductList } from '../components';
 
 import * as basketActions from '../actions/basket';
+import Basket from "../components/Basket";
 
 export class BasketPage extends Component {
 
     constructor(props) {
         super(props);
         props.loadBasket();
+    }
+
+    /**
+     * Method that will add the item to the cart
+     */
+    addProduct = (cartId, productId) => {
+        const { addAnItemToACart } = this.props
+        addAnItemToACart(cartId, productId)
     }
 
     render() {
@@ -26,9 +35,10 @@ export class BasketPage extends Component {
                 </header>
                 <main className="row">
                     <section className="col">
-                        <ProductList products={products} addToBasket={() => {}} />
+                        <ProductList products={products} addToBasket={(productId) => this.addProduct(basket.id, productId)} />
                     </section>
                     <section className="col">
+                        <Basket basket={basket} products={products} />
                         {/* Basket */}
                     </section>
                 </main>
