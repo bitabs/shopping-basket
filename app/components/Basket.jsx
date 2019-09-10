@@ -18,9 +18,9 @@ const Basket = ({ basket, products }) => {
             const { name, price } = findProduct
             return (
               <li className="list-group-item d-flex justify-content-between" key={itemId}>
-                <span>Product: {name}</span>
+                <span>Product: <b>{name}</b></span>
                 <span>Price: <b>£{price}</b></span>
-                <span>Quantity: {quantity}</span>
+                <span>Quantity: <b>{quantity}</b></span>
               </li>
             )
           })
