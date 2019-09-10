@@ -14,11 +14,33 @@ export class BasketPage extends Component {
     }
 
     /**
-     * Method that will add the item to the cart
+     *  Method that will add the item to the cart
+     * @param cartId
+     * @param productId
      */
     addProduct = (cartId, productId) => {
         const { addAnItemToACart } = this.props
         addAnItemToACart(cartId, productId)
+    }
+
+    /**
+     * increments the quantity of the item
+     * @param cartId
+     * @param productId
+     */
+    incItemQuantity = (cartId, productId) => {
+        const { incItemQuantity } = this.props
+        incItemQuantity(cartId, productId)
+    }
+
+    /**
+     * decrements the quantity of the item
+     * @param cartId
+     * @param productId
+     */
+    decItemQuantity = (cartId, productId) => {
+        const { decItemQuantity } = this.props
+        decItemQuantity(cartId, productId)
     }
 
     render() {
@@ -35,11 +57,18 @@ export class BasketPage extends Component {
                 </header>
                 <main className="row">
                     <section className="col">
-                        <ProductList products={products} addToBasket={(productId) => this.addProduct(basket.id, productId)} />
+                        <ProductList
+                          products={products}
+                          addToBasket={(productId) => this.addProduct(basket.id, productId)}
+                        />
                     </section>
                     <section className="col">
-                        <Basket basket={basket} products={products} />
-                        {/* Basket */}
+                        <Basket
+                          basket={basket}
+                          products={products}
+                          incrementItemQuantity={this.incItemQuantity}
+                          decrementItemQuantity={this.decItemQuantity}
+                        />
                     </section>
                 </main>
             </div>
